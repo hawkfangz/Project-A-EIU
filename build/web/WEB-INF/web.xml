@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <jsp-file>/home_page.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    <servlet>
+        <servlet-name>AdminLogin</servlet-name>
+        <jsp-file>/Admin/login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminLogin</servlet-name>
+        <url-pattern>/Admin/Login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GoingIn</servlet-name>
+        <servlet-class>Controller.AdminLoginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GoingIn</servlet-name>
+        <url-pattern>/Admin/GoingIn</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    <servlet>
+        <servlet-name>ProductManager</servlet-name>
+        <jsp-file>/Admin/product_type_management_1.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductManager</servlet-name>
+        <url-pattern>/Admin/ProductManager</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddProductType</servlet-name>
+        <servlet-class>Controller.ProductsFormController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddProductType</servlet-name>
+        <url-pattern>/Admin/AddProductType</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    <servlet>
+        <servlet-name>LogIn</servlet-name>
+        <jsp-file>/login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogIn</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>Home</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/Error-Pages/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error-Pages/error.jsp</location>
+    </error-page>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
