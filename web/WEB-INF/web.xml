@@ -20,6 +20,14 @@
         <url-pattern>/Admin/Login</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>AdminMainManager</servlet-name>
+        <jsp-file>/Admin/manager.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminMainManager</servlet-name>
+        <url-pattern>/Admin/manager</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>GoingIn</servlet-name>
         <servlet-class>Controller.AdminLoginController</servlet-class>
     </servlet>
@@ -31,12 +39,12 @@
     
     
     <servlet>
-        <servlet-name>ProductManager</servlet-name>
+        <servlet-name>ProductTypeManage</servlet-name>
         <jsp-file>/Admin/product_type_management_1.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ProductManager</servlet-name>
-        <url-pattern>/Admin/ProductManager</url-pattern>
+        <servlet-name>ProductTypeManage</servlet-name>
+        <url-pattern>/Admin/ProductTypeManager</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AddProductType</servlet-name>
