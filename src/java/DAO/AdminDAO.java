@@ -30,7 +30,7 @@ public class AdminDAO {
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, account);
         ps.setString(2, password);
-        System.out.println(sql);
+        System.out.println(ps);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             if (rs.getBoolean(4)) {

@@ -35,7 +35,7 @@ public class ProductsFormController extends HttpServlet {
             String des = request.getParameter("des");
             int status = Integer.parseInt(request.getParameter("status"));
             ProductTypeDAO.addProductType(name, des, status);
-            response.sendRedirect(request.getContextPath() + "/Admin/ProductManager");
+            response.sendRedirect(request.getContextPath() + "/Admin/ProductTypeManager");
         }
     }
 

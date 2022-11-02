@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -26,20 +27,28 @@ public class AdminLoginController extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+
             String account = request.getParameter("account");
-            String password = request.getParameter("account");
-            System.out.println("account entered");
+            String password = request.getParameter("password");
+            String msg = "empty";
+            String target = "Login";
+
             boolean exist = AdminDAO.checkAdminAccount(account, password);
+
             if (exist) {
+                msg = "welcome, " + account;
                 HttpSession session = request.getSession();
-                session.setAttribute(account, "admin");
-                response.sendRedirect(request.getContextPath() + "/Admin/ProductManager");
+                target = "manager";
+                session.setAttribute("admin", account);
+            } else {
+                msg = "something wrong, double-check your account or password";
             }
-            else{
-                response.sendRedirect(request.getContextPath() + "/Admin/Login");
-            }
+            request.setAttribute("msg", msg);
+            RequestDispatcher reqDispatch = request.getRequestDispatcher(target);
+            reqDispatch.forward(request, response);
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

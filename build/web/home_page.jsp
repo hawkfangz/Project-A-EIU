@@ -17,7 +17,7 @@
         <br>
         <a href="error2test">Goes to Error Page</a>
         <br>
-        <a href="Admin/ProductManager">Manager Page</a>
+        <a href="Admin/ProductTypeManager">Manager Page</a>
         <br>
     </body>
 </html>
