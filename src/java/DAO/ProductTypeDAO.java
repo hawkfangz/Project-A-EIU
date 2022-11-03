@@ -15,20 +15,11 @@ import java.util.List;
  */
 public class ProductTypeDAO {
 
-    private static String dbURL = "jdbc:mysql://localhost:3306/";
-    private static String dbName = "toyshop";
-    private static String dbUsername = "root";
-    private static String dbPassword = "admin";
-
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection(dbURL + dbName, dbUsername, dbPassword);
-        return con;
-    }
     public static List<ProductType> getTypeTable() throws SQLException, ClassNotFoundException {
         List<ProductType> typeList = new ArrayList<>();
         try {
-            Connection con = getConnection();
+            DB_Connection db_con = new DB_Connection();
+            Connection con = db_con.getConnection();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from product_type");
 //        ResultSetMetaData resMetaData = rs.getMetaData();
@@ -47,7 +38,8 @@ public class ProductTypeDAO {
 
     public static void addProductType(String name, String des, int status) {
         try {
-            Connection con = DriverManager.getConnection(dbURL + dbName, dbUsername, dbPassword);
+            DB_Connection db_con = new DB_Connection();
+            Connection con = db_con.getConnection();
             String sql = "INSERT INTO `toyshop`.`product_type` (`typeName`, `Description`, `Status`) VALUES (?,?,?);";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, name);
