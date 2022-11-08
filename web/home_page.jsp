@@ -12,6 +12,7 @@
         <title>Home Page</title>
     </head>
     <body>
+        <%@include file="/checkLoginHeader.jsp" %>
         <h1>This is home page!</h1>
         <a href="Login">Log in using servlet name</a>
         <br>

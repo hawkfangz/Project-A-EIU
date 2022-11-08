@@ -8,9 +8,14 @@
         <servlet-name>Home</servlet-name>
         <url-pattern></url-pattern>
     </servlet-mapping>
-    
-    
-    
+    <servlet>
+        <servlet-name>CustomerController</servlet-name>
+        <servlet-class>Controller.CustomerController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerController</servlet-name>
+        <url-pattern>/CustomerController</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>AdminLogin</servlet-name>
         <jsp-file>/Admin/login.jsp</jsp-file>
@@ -35,9 +40,6 @@
         <servlet-name>GoingIn</servlet-name>
         <url-pattern>/Admin/GoingIn</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <servlet>
         <servlet-name>ProductTypeManage</servlet-name>
         <jsp-file>/Admin/product_type_management_1.jsp</jsp-file>
@@ -54,9 +56,6 @@
         <servlet-name>AddProductType</servlet-name>
         <url-pattern>/Admin/AddProductType</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <servlet>
         <servlet-name>LogIn</servlet-name>
         <jsp-file>/login.jsp</jsp-file>
@@ -76,6 +75,7 @@
         <error-code>404</error-code>
         <location>/Error-Pages/error.jsp</location>
     </error-page>
+
     <session-config>
         <session-timeout>
             30

@@ -4,19 +4,22 @@
  */
 package DAO;
 
+import Entity.Customer;
 import java.sql.*;
 
 /**
  *
  * @author phanh
  */
-public class AdminDAO {
+public class CustomerDAO {
 
-    public static boolean checkAdminAccount(String account, String password) throws ClassNotFoundException, SQLException {
+    public static Customer login(String account, String password) throws SQLException, ClassNotFoundException {
         DB_Connection db_con = new DB_Connection();
         Connection con = db_con.getConnection();
         boolean exist = false;
-        String sql = "select * from admin where account = ? and password = ?";
+        Customer customer = null;
+        System.out.println(account + " " + password);
+        String sql = "select * from customer where account = ? and password = ?";
         PreparedStatement ps;
         ps = con.prepareStatement(sql);
         ps.setString(1, account);
@@ -24,12 +27,10 @@ public class AdminDAO {
         System.out.println(ps);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            if (rs.getBoolean(4)) {
-                exist = true;
-            }
+            customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7));
         }
-        con.close();
-        return exist;
+        return customer;
+
     }
 
 }

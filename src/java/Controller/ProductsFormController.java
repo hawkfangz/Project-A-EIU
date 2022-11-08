@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.ProductTypeDAO;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -31,11 +32,18 @@ public class ProductsFormController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+
             String name = request.getParameter("name");
             String des = request.getParameter("des");
+            String destinate = "ProductTypeManager";
+
             int status = Integer.parseInt(request.getParameter("status"));
+            String logedUser = (String) request.getAttribute("admin");
+            System.out.println(logedUser);
             ProductTypeDAO.addProductType(name, des, status);
-            response.sendRedirect(request.getContextPath() + "/Admin/ProductTypeManager");
+
+            RequestDispatcher reqDispatch = request.getRequestDispatcher(destinate);
+            reqDispatch.forward(request, response);
         }
     }
 

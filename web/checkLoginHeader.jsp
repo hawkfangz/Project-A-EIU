@@ -1,8 +1,22 @@
+<%@page import="Entity.Customer"%>
 <%
-    String logedUser = (String) session.getAttribute("admin");
-    if (logedUser != null) {
-        out.println("<h1>hello admin " + logedUser + "</h1>");
+    String mode = "";
+    String modeName = "";
+    String msg = "";
+    Customer customer = (Customer) session.getAttribute("user");
+    if (customer != null) {
+        msg = "Hello "+customer.Name;
+        mode = "logout";
+        modeName = "Sign out";
     } else {
-        out.println("<h1>You are not logged in</h1>");
+        msg ="Hello there!";
+        mode = "login";
+        modeName = "Sign in";
     }
 %>
+
+<form action="CustomerController" method="post">
+    <input type="hidden" name="mode" value="<%=mode%>">
+    <label class="col-sm-2 col-form-label"><%=msg%></label>
+    <button type="submit" class="btn btn-primary"><%=modeName%></button>
+</form>

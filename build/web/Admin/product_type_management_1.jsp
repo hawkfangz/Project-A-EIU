@@ -18,6 +18,7 @@
         <title>Manager</title>
     </head>
     <body>
+        <%@include file="checkAdminHeader.jsp" %>
 
         <div class="form-group col-md-4">
             <select id="inputState" class="form-control">
@@ -29,8 +30,7 @@
         <%
             //                        out.print("<td>" + rs.getString(kCol) + "</td>");
         %><table class="table" border= "1"><%
-            %><tr><%                
-                out.print("<td><b>Type ID</b></td>");
+            %><tr><%                out.print("<td><b>Type ID</b></td>");
                 out.print("<td><b>Name</b></td>");
                 out.print("<td><b>Des</b></td>");
                 out.print("<td><b>Status</b></td>");
@@ -39,12 +39,12 @@
                     List<ProductType> typeList = ProductTypeDAO.getTypeTable();
                     for (int i = 0; i < typeList.size(); i++) {
                 %><tr><%
-                            out.print("<td>" + typeList.get(i).getId() + "</td>");
-                            out.print("<td>" + typeList.get(i).getName() + "</td>");
-                            out.print("<td>" + typeList.get(i).getDes() + "</td>");
-                            out.print("<td>" + typeList.get(i).getStatus() + "</td>");
+                    out.print("<td>" + typeList.get(i).getId() + "</td>");
+                    out.print("<td>" + typeList.get(i).getName() + "</td>");
+                    out.print("<td>" + typeList.get(i).getDes() + "</td>");
+                    out.print("<td>" + typeList.get(i).getStatus() + "</td>");
                 %><tr><%
-                            }
+                    }
                 %></table>
         <form class="form-inline" action="AddProductType" method="post">
             <div class="form-group mb-2">
