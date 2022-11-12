@@ -11,20 +11,50 @@ import java.sql.Date;
  * @author phanh
  */
 public class Customer {
+
     public int ID;
     public String Account;
     public String Name;
+    public String gender;
+
     public Date DoB;
     public String Phone;
     public String email;
+    public String address;
 
-    public Customer(int ID, String Account, String Name, Date DoB, String Phone, String email) {
+    public Customer(int ID, String Account, String Name, String gender, Date DoB, String Phone, String email, String address) {
         this.ID = ID;
         this.Account = Account;
         this.Name = Name;
+        this.gender = gender;
         this.DoB = DoB;
         this.Phone = Phone;
         this.email = email;
+        this.address = address;
+    }
+    
+    public String getAccount() {
+        return Account;
+    }
+
+    public void setAccount(String Account) {
+        this.Account = Account;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getID() {
@@ -66,6 +96,5 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
+
 }

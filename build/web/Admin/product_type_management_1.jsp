@@ -26,26 +26,29 @@
                 <option>products</option>
             </select>
         </div>
-
-        <%
-            //                        out.print("<td>" + rs.getString(kCol) + "</td>");
-        %><table class="table" border= "1"><%
-            %><tr><%                out.print("<td><b>Type ID</b></td>");
+        <table class="table table-striped" border= "1"><%
+            %><tr><%           
+                out.print("<td><b>Type ID</b></td>");
                 out.print("<td><b>Name</b></td>");
                 out.print("<td><b>Des</b></td>");
                 out.print("<td><b>Status</b></td>");
+                out.print("<td><b>Function</b></td>");
                 %></tr>
-                <%
-                    List<ProductType> typeList = ProductTypeDAO.getTypeTable();
+                <%                    List<ProductType> typeList = ProductTypeDAO.getTypeTable();
                     for (int i = 0; i < typeList.size(); i++) {
-                %><tr><%
+                %>
+            <tr>
+                <%
                     out.print("<td>" + typeList.get(i).getId() + "</td>");
                     out.print("<td>" + typeList.get(i).getName() + "</td>");
                     out.print("<td>" + typeList.get(i).getDes() + "</td>");
                     out.print("<td>" + typeList.get(i).getStatus() + "</td>");
-                %><tr><%
-                    }
-                %></table>
+                    out.print("<td> <a href="+"AddProductType?mode=delete&id="+ typeList.get(i).getId() +">Delete</a> || <a href=\"\">Update</a> </td>");
+                %>
+            <tr>
+                <%}
+            %>
+        </table>
         <form class="form-inline" action="AddProductType" method="post">
             <div class="form-group mb-2">
                 <input type="text" class="form-control-plaintext" name="name" placeholder="Name">

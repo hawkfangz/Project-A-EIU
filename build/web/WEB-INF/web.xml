@@ -6,7 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern/>
     </servlet-mapping>
     <servlet>
         <servlet-name>CustomerController</servlet-name>
@@ -50,7 +50,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>AddProductType</servlet-name>
-        <servlet-class>Controller.ProductsFormController</servlet-class>
+        <servlet-class>Controller.ProductsTypeController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddProductType</servlet-name>
@@ -75,7 +75,6 @@
         <error-code>404</error-code>
         <location>/Error-Pages/error.jsp</location>
     </error-page>
-
     <session-config>
         <session-timeout>
             30

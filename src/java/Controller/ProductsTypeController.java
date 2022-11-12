@@ -17,7 +17,7 @@ import javax.servlet.RequestDispatcher;
  *
  * @author phanh
  */
-public class ProductsFormController extends HttpServlet {
+public class ProductsTypeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,20 +31,7 @@ public class ProductsFormController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
 
-            String name = request.getParameter("name");
-            String des = request.getParameter("des");
-            String destinate = "ProductTypeManager";
-
-            int status = Integer.parseInt(request.getParameter("status"));
-            String logedUser = (String) request.getAttribute("admin");
-            System.out.println(logedUser);
-            ProductTypeDAO.addProductType(name, des, status);
-
-            RequestDispatcher reqDispatch = request.getRequestDispatcher(destinate);
-            reqDispatch.forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,7 +46,14 @@ public class ProductsFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String mode = request.getParameter("mode");
+        int id = Integer.parseInt(request.getParameter("id"));
+        String destinate = "ProductTypeManager";
+        if (mode.equals("delete")) {
+            ProductTypeDAO.deleteProductType(id);
+        }
+        RequestDispatcher reqDispatch = request.getRequestDispatcher(destinate);
+        reqDispatch.forward(request, response);
     }
 
     /**
@@ -73,7 +67,19 @@ public class ProductsFormController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            String name = request.getParameter("name");
+            String des = request.getParameter("des");
+            String destinate = "ProductTypeManager";
+
+            int status = Integer.parseInt(request.getParameter("status"));
+            String logedUser = (String) request.getAttribute("admin");
+            System.out.println(logedUser);
+            ProductTypeDAO.addProductType(name, des, status);
+
+            RequestDispatcher reqDispatch = request.getRequestDispatcher(destinate);
+            reqDispatch.forward(request, response);
+        }
     }
 
     /**

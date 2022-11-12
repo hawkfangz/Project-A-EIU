@@ -27,10 +27,9 @@ public class CustomerDAO {
         System.out.println(ps);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7));
+            customer = new Customer(rs.getInt("CustomerID"), rs.getString("Account"), rs.getString("Name"),rs.getString("gender"), rs.getDate("DoB"), rs.getString("Phone"), rs.getString("Email"),rs.getString("Address"));
         }
         return customer;
-
     }
 
 }

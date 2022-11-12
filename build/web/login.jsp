@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!doctype html>
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -24,13 +23,13 @@
                     <form method="POST" action="CustomerController">
                         <input type="hidden" name="mode" value="login">
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Account</label>
+                            <label class="col-sm-2 col-form-label">Account</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="account">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                            <label class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
                                 <input type="password" class="form-control" name="password">
                             </div>
@@ -42,8 +41,8 @@
                         </div>
                     </form>
                 </div>
-
             </div>
+
         </div>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>

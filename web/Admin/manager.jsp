@@ -3,10 +3,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Admin View</title>
     </head>
     <body>        
-        <%@include file="/checkLoginHeader.jsp" %>
+        <%@include file="/Admin/checkAdminHeader.jsp" %>
 
         <a href="ProductTypeManager"> Product Type Manager</a>
     </body>

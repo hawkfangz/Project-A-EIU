@@ -47,4 +47,17 @@ public class ProductTypeDAO {
         } catch (Exception e) {
         }
     }
+     public static void deleteProductType(int id) {
+        try {
+            DB_Connection db_con = new DB_Connection();
+            try (Connection con = db_con.getConnection()) {
+                String sql = "DELETE FROM `toyshop`.`product_type` WHERE (`typeID` = ?);";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, id);
+
+                ps.executeUpdate();
+            }
+        } catch (Exception e) {
+        }
+    }
 }
