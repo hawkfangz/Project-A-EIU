@@ -47,7 +47,12 @@ public class CustomerController extends HttpServlet {
                 String password = request.getParameter("password");
                 Customer customer = CustomerDAO.login(account, password);
                 if (customer == null) {
+                    
+                    
                     System.out.println("something wrong");
+                    request.setAttribute("notification", "wrong");
+                    
+                    
                 } else {
                     exist = true;
                     HttpSession userSession = request.getSession();

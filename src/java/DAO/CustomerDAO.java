@@ -16,7 +16,6 @@ public class CustomerDAO {
     public static Customer login(String account, String password) throws SQLException, ClassNotFoundException {
         DB_Connection db_con = new DB_Connection();
         Connection con = db_con.getConnection();
-        boolean exist = false;
         Customer customer = null;
         System.out.println(account + " " + password);
         String sql = "select * from customer where account = ? and password = ?";

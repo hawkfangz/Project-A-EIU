@@ -34,23 +34,26 @@ public class ProductsTypeController extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String mode = request.getParameter("mode");
+        String name = request.getParameter("type-name");
+        String des = request.getParameter("type-des");
+
         int id = Integer.parseInt(request.getParameter("id"));
         String destinate = "ProductTypeManager";
-        if (mode.equals("delete")) {
-            ProductTypeDAO.deleteProductType(id);
+
+        if (mode.equals("disable")) {
+            System.out.println("goes to controller");
+            ProductTypeDAO.disableProductType(id);
+        }
+
+        if (mode.equals("update")) {
+            System.out.println(name);
+            System.out.println(des);
+
+            ProductTypeDAO.updateProductType(id, des, name);
         }
         RequestDispatcher reqDispatch = request.getRequestDispatcher(destinate);
         reqDispatch.forward(request, response);
@@ -71,7 +74,6 @@ public class ProductsTypeController extends HttpServlet {
             String name = request.getParameter("name");
             String des = request.getParameter("des");
             String destinate = "ProductTypeManager";
-
             int status = Integer.parseInt(request.getParameter("status"));
             String logedUser = (String) request.getAttribute("admin");
             System.out.println(logedUser);

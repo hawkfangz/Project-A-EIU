@@ -57,6 +57,17 @@
         <url-pattern>/Admin/AddProductType</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ProductTypeDetail</servlet-name>
+        <jsp-file>/Admin/product_type_detail.jsp</jsp-file>    
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductTypeDetail</servlet-name>
+        <url-pattern>/Admin/ProductTypeDetail</url-pattern>
+    </servlet-mapping>
+    
+    
+   
+    <servlet>
         <servlet-name>LogIn</servlet-name>
         <jsp-file>/login.jsp</jsp-file>
     </servlet>

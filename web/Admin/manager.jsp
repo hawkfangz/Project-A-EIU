@@ -7,7 +7,6 @@
     </head>
     <body>        
         <%@include file="/Admin/checkAdminHeader.jsp" %>
-
         <a href="ProductTypeManager"> Product Type Manager</a>
     </body>
 </html>

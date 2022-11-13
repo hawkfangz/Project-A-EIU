@@ -23,7 +23,7 @@ public class ProductTypeDAO {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from product_type");
             while (rs.next()) {
-                ProductType type = new ProductType(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                ProductType type = new ProductType(rs.getInt("typeID"), rs.getString("typeName"), rs.getString("Description"), rs.getInt("Status"));
                 typeList.add(type);
             }
             con.close();
@@ -36,26 +36,73 @@ public class ProductTypeDAO {
     public static void addProductType(String name, String des, int status) {
         try {
             DB_Connection db_con = new DB_Connection();
-            try (Connection con = db_con.getConnection()) {
+            try ( Connection con = db_con.getConnection()) {
                 String sql = "INSERT INTO `toyshop`.`product_type` (`typeName`, `Description`, `Status`) VALUES (?,?,?);";
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setString(1, name);
                 ps.setString(2, des);
                 ps.setInt(3, status);
                 ps.execute();
+                con.close();
+            }
+
+        } catch (Exception e) {
+        }
+    }
+
+    public static ProductType getProductType(int id) {
+        try {
+            DB_Connection db_con = new DB_Connection();
+            try ( Connection con = db_con.getConnection()) {
+                String sql = "SELECT * FROM `toyshop`.`product_type` WHERE typeID = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    ProductType type = new ProductType(rs.getInt("typeID"), rs.getString("typeName"), rs.getString("Description"), rs.getInt("Status"));
+                    return type;
+                }
+                con.close();
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public static void disableProductType(int id) {
+        try {
+            int status = 1;
+            DB_Connection db_con = new DB_Connection();
+            try ( Connection con = db_con.getConnection()) {
+                Statement s = con.createStatement();
+                ResultSet rs = s.executeQuery("select Status from `toyshop`.`product_type` where typeID =" + id);
+                while (rs.next()) {
+                    if (rs.getInt("Status") == 1) {
+                        status = 0;
+                    }
+                }
+
+                String sql = "UPDATE `toyshop`.`product_type` SET Status = " + status + " WHERE typeID = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, id);
+                ps.executeUpdate();
+                con.close();
             }
         } catch (Exception e) {
         }
     }
-     public static void deleteProductType(int id) {
+     public static void updateProductType(int id, String des, String name) {
         try {
             DB_Connection db_con = new DB_Connection();
-            try (Connection con = db_con.getConnection()) {
-                String sql = "DELETE FROM `toyshop`.`product_type` WHERE (`typeID` = ?);";
+            try ( Connection con = db_con.getConnection()) {
+                Statement s = con.createStatement();
+                ResultSet rs = s.executeQuery("select Status from `toyshop`.`product_type` where typeID =" + id);
+                String sql = "UPDATE `toyshop`.`product_type` SET typeName = \"" + name + "\",Description = \"" + des +"\" WHERE typeID = ?";
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setInt(1, id);
-
+                System.out.println(ps);
                 ps.executeUpdate();
+                con.close();
             }
         } catch (Exception e) {
         }
