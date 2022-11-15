@@ -9,6 +9,7 @@
 <%@page import="Entity.Customer"%>
 <%
     Customer customer = (Customer) session.getAttribute("user");
+    int id = customer.getID();
     String account = customer.Account;
     String name = customer.getName();
     String gender = customer.getGender();
@@ -25,11 +26,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
               integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css"/>
         <title><%=account%> profile</title>
     </head>
     <body>
         <div class="container">
             <form>
+                <img src="user-img/<%=id%>.jpg" class="profile-image img-thumbnail" alt="...">
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <input disabled type="text" class="form-control" placeholder="<%=account%>" id="account">

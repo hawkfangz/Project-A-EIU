@@ -14,15 +14,16 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manager</title>
     </head>
     <body>
         <div class="container"> 
+            <%--<%@include file="checkAdminHeader.jsp" %>--%>
+            <form class=" form-inline" action="AddProductType" method="post">
+                <input type="hidden" name="mode" value="add">
 
-            <%@include file="checkAdminHeader.jsp" %>
-
-            <form class="form-inline" action="AddProductType" method="post">
                 <div class="form-group mb-2">
                     <input type="text" class="form-control-plaintext" name="name" placeholder="Name">
                 </div>
@@ -35,15 +36,21 @@
                 <button type="submit" name="addBtn" value="add" class="btn btn-primary mb-2">Add</button>
             </form>
             <table class="table table-striped" border= "1"><%
-                %><tr><%                out.print("<td><b>Type ID</b></td>");
+                %><tr><%                    out.print("<td><b>Type ID</b></td>");
                     out.print("<td><b>Name</b></td>");
                     out.print("<td><b>Des</b></td>");
                     out.print("<td><b>Status</b></td>");
                     out.print("<td><b>Function</b></td>");
-                    out.print("<td><b></b></td>");
                     %></tr>
-                    <%List<ProductType> typeList = ProductTypeDAO.getTypeTable();
+                    <%
+                        String btn = "";
+                        List<ProductType> typeList = ProductTypeDAO.getTypeTable();
                         for (int i = 0; i < typeList.size(); i++) {
+                            if (typeList.get(i).getStatus().equals("available")) {
+                                btn = "disable";
+                            } else {
+                                btn = "enable";
+                            }
                     %>
                 <tr>
                     <%
@@ -51,8 +58,12 @@
                         out.print("<td>" + typeList.get(i).getName() + "</td>");
                         out.print("<td>" + typeList.get(i).getDes() + "</td>");
                         out.print("<td class=\"status\">" + typeList.get(i).getStatus() + "</td>");
-                        out.print("<td> <a href=" + "AddProductType?mode=disable&id=" + typeList.get(i).getId() + ">Enable/Disable</a></td>");
-                        out.print("<td><a href=" + "ProductTypeDetail?id=" + typeList.get(i).getId() + ">Update</a>");
+                        out.println("<td >"
+                                + "<span class=\"action-form\"><form  method=\"post\" action=\"AddProductType\">");
+                        out.println("   <input type=\"hidden\" name=\"id\" value=\"" + typeList.get(i).getId() + "\" />");
+                        out.println("   <button type=\"submit\" name=\"mode\" value=\"update\">Update</button>");
+                        out.println("   <button type=\"submit\" name=\"mode\" value=\"disable\">"+btn+"</button>");
+                        out.println("</form></span>");
                     %>
                 <tr>
                     <%}

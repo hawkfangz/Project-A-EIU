@@ -37,26 +37,26 @@ public class ProductsTypeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mode = request.getParameter("mode");
-        String name = request.getParameter("type-name");
-        String des = request.getParameter("type-des");
-
-        int id = Integer.parseInt(request.getParameter("id"));
-        String destinate = "ProductTypeManager";
-
-        if (mode.equals("disable")) {
-            System.out.println("goes to controller");
-            ProductTypeDAO.disableProductType(id);
-        }
-
-        if (mode.equals("update")) {
-            System.out.println(name);
-            System.out.println(des);
-
-            ProductTypeDAO.updateProductType(id, des, name);
-        }
-        RequestDispatcher reqDispatch = request.getRequestDispatcher(destinate);
-        reqDispatch.forward(request, response);
+//        String mode = request.getParameter("mode");
+//        String name = request.getParameter("type-name");
+//        String des = request.getParameter("type-des");
+//
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        String destinate = "ProductTypeManager";
+//
+//        if (mode.equals("disable")) {
+//            System.out.println("goes to controller");
+//            ProductTypeDAO.disableProductType(id);
+//        }
+//
+//        if (mode.equals("update")) {
+//            System.out.println(name);
+//            System.out.println(des);
+//
+//            ProductTypeDAO.updateProductType(id, des, name);
+//        }
+//        RequestDispatcher reqDispatch = request.getRequestDispatcher(destinate);
+//        reqDispatch.forward(request, response);
     }
 
     /**
@@ -71,13 +71,37 @@ public class ProductsTypeController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try ( PrintWriter out = response.getWriter()) {
-            String name = request.getParameter("name");
-            String des = request.getParameter("des");
+            String mode = request.getParameter("mode");
             String destinate = "ProductTypeManager";
-            int status = Integer.parseInt(request.getParameter("status"));
-            String logedUser = (String) request.getAttribute("admin");
-            System.out.println(logedUser);
-            ProductTypeDAO.addProductType(name, des, status);
+
+
+            if (mode.equals("disable")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                ProductTypeDAO.disableProductType(id);
+            }
+
+            if (mode.equals("update")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                destinate = "/Admin/ProductTypeDetail?id=" + id;
+                response.sendRedirect(request.getContextPath() + destinate);
+                return;
+            }
+
+            if (mode.equals("do-update")) {
+                String name = request.getParameter("type-name");
+                String des = request.getParameter("type-des");
+                int id = Integer.parseInt(request.getParameter("id"));
+                ProductTypeDAO.updateProductType(id, des, name);
+                return;
+            }
+
+            if (mode.equals("add")) {
+                String name = request.getParameter("name");
+                String des = request.getParameter("des");
+                int status = Integer.parseInt(request.getParameter("status"));
+                ProductTypeDAO.addProductType(name, des, status);
+                return;
+            }
 
             RequestDispatcher reqDispatch = request.getRequestDispatcher(destinate);
             reqDispatch.forward(request, response);

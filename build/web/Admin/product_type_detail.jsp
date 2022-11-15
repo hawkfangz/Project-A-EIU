@@ -28,8 +28,8 @@
     </head>
     <body>
         <div class="container">
-            <form action="AddProductType" method="get">
-                <input type="hidden" name ="mode" value="update">
+            <form action="AddProductType" method="post">
+                <input type="hidden" name ="mode" value="do-update">
                 <div class="row">
                     <div class="col">
                         <input type="text" class="form-control" name="type-name" id="type-name">
