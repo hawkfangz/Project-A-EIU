@@ -20,5 +20,7 @@
         <br>
         <a href="Admin/ProductTypeManager">Manager Page</a>
         <br>
+        <a href="Admin/ProductsManager">Manager Page</a>
+        <br>
     </body>
 </html>

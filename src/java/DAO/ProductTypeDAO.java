@@ -69,6 +69,27 @@ public class ProductTypeDAO {
         return null;
     }
 
+    public static String getProductTypeDetail(int id,String findWhat) throws SQLException, ClassNotFoundException {
+        try {
+            System.out.println(id);
+            String typeName = "REEEEEEEEEEEEE";
+            DB_Connection db_con = new DB_Connection();
+            Connection con = db_con.getConnection();
+            String sql = "SELECT * FROM `toyshop`.`product_type` where typeID = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                typeName = rs.getString(findWhat);
+            }
+            con.close();
+            return typeName;
+        } catch (Exception e) {
+        }
+        return "";
+    }
+
     public static void disableProductType(int id) {
         try {
             int status = 1;
@@ -91,13 +112,15 @@ public class ProductTypeDAO {
         } catch (Exception e) {
         }
     }
-     public static void updateProductType(int id, String des, String name) {
+
+    public static void updateProductType(int id, String des, String name) {
         try {
             DB_Connection db_con = new DB_Connection();
             try ( Connection con = db_con.getConnection()) {
+                System.out.println(des);
                 Statement s = con.createStatement();
                 ResultSet rs = s.executeQuery("select Status from `toyshop`.`product_type` where typeID =" + id);
-                String sql = "UPDATE `toyshop`.`product_type` SET typeName = \"" + name + "\",Description = \"" + des +"\" WHERE typeID = ?";
+                String sql = "UPDATE `toyshop`.`product_type` SET typeName = \"" + name + "\",Description = \"" + des + "\" WHERE typeID = ?";
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setInt(1, id);
                 System.out.println(ps);

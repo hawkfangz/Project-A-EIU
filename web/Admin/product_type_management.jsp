@@ -40,7 +40,6 @@
                     out.print("<td><b>Name</b></td>");
                     out.print("<td><b>Des</b></td>");
                     out.print("<td><b>Status</b></td>");
-                    out.print("<td><b>Function</b></td>");
                     %></tr>
                     <%
                         String btn = "";
@@ -61,8 +60,8 @@
                         out.println("<td >"
                                 + "<span class=\"action-form\"><form  method=\"post\" action=\"AddProductType\">");
                         out.println("   <input type=\"hidden\" name=\"id\" value=\"" + typeList.get(i).getId() + "\" />");
-                        out.println("   <button type=\"submit\" name=\"mode\" value=\"update\">Update</button>");
-                        out.println("   <button type=\"submit\" name=\"mode\" value=\"disable\">"+btn+"</button>");
+                        out.println("   <button class=\"function-btn\" type=\"submit\" name=\"mode\" value=\"update\">Update</button>");
+                        out.println("   <button class=\"function-btn\" type=\"submit\" name=\"mode\" value=\"disable\">" + btn + "</button>");
                         out.println("</form></span>");
                     %>
                 <tr>

@@ -10,13 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DAO.ProductTypeDAO;
 
 /**
  *
- * @author phanh
+ * @author Hau
  */
-public class ProductsTypeController extends HttpServlet {
+public class ProductsController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,12 +29,35 @@ public class ProductsTypeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("utf-8");
+            String mode = request.getParameter("mode");
+            String destinate = "/Admin/ProductsManager";
 
+            if (mode.equals("Add")) {
+                String name = request.getParameter("name");
+                int typeId = Integer.parseInt(request.getParameter("id"));
+                String des = request.getParameter("des");
+                int price = Integer.parseInt(request.getParameter("price"));
+            }
+
+        }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -49,41 +71,7 @@ public class ProductsTypeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try ( PrintWriter out = response.getWriter()) {
-            response.setContentType("text/html;charset=UTF-8");
-            request.setCharacterEncoding("utf-8");
-            String mode = request.getParameter("mode");
-            String destinate = "/Admin/ProductTypeManager";
-
-            if (mode.equals("disable")) {
-                int id = Integer.parseInt(request.getParameter("id"));
-                ProductTypeDAO.disableProductType(id);
-            }
-
-            if (mode.equals("update")) {
-                int id = Integer.parseInt(request.getParameter("id"));
-                destinate = "/Admin/ProductTypeDetail?id=" + id;
-                response.sendRedirect(request.getContextPath() + destinate);
-                return;
-            }
-
-            if (mode.equals("do-update")) {
-                String name = request.getParameter("type-name");
-                String des = request.getParameter("type-des");
-                int id = Integer.parseInt(request.getParameter("id"));
-                ProductTypeDAO.updateProductType(id, des, name);
-            }
-
-            if (mode.equals("add")) {
-                String name = request.getParameter("name");
-                String des = request.getParameter("des");
-                int status = Integer.parseInt(request.getParameter("status"));
-                ProductTypeDAO.addProductType(name, des, status);
-            }
-            response.sendRedirect(request.getContextPath() + destinate);
-//            RequestDispatcher reqDispatch = request.getRequestDispatcher(destinate);
-//            reqDispatch.forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**
