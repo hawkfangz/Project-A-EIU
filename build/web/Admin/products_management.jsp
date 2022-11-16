@@ -7,14 +7,12 @@
 <%@page import="Entity.Products"%>
 <%@page import="DAO.ProductsDAO"%>
 <%
-    List<Products> productList = ProductsDAO.getPrList();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Products Page</title>
     </head>
@@ -33,6 +31,7 @@
                 </thead>
                 <tbody>
                     <%
+                        List<Products> productList = ProductsDAO.getPrList();
                         for (Products product : productList) {
                             out.println("<tr class=\"product-detail\">");
                             out.println("<th>" + product.getId() + "</td>");
