@@ -123,7 +123,6 @@ public class ProductTypeDAO {
                 String sql = "UPDATE `toyshop`.`product_type` SET typeName = \"" + name + "\",Description = \"" + des + "\" WHERE typeID = ?";
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setInt(1, id);
-                System.out.println(ps);
                 ps.executeUpdate();
                 con.close();
             }

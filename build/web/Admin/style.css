@@ -1,0 +1,21 @@
+
+.container {
+    max-width: 1400px;
+}
+thead{
+    background-color: graytext
+}
+thead tr:hover{
+    background-color: graytext
+}
+
+tr:hover{
+    background-color: #e3f2e1;
+}
+
+button{
+    min-width: 80px
+}
+.action-form{
+    min-width: 215px
+}

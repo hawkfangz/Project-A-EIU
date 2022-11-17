@@ -1,20 +1,21 @@
 <%-- 
-    Document   : product_management
-    Created on : Nov 16, 2022, 10:31:15 AM
-    Author     : Hau
+    Document   : products_management
+    Created on : Nov 16, 2022, 8:39:28 PM
+    Author     : phanh
 --%>
 <%@page import="java.util.List"%>
 <%@page import="Entity.Products"%>
 <%@page import="DAO.ProductsDAO"%>
-<%
-%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Products Page</title>
+        <title>Manager</title>
     </head>
     <body>
         <div class="container">
@@ -39,8 +40,7 @@
                             out.println("<td>" + product.getTypeID() + "</td>                        ");
                             out.println("<td>" + product.getDes() + "</td>");
                             out.println("<td>" + product.getPrice() + "</td>");
-                            out.println("<td>" + product.getStatus() + "</td>");
-                            out.println("</tr>");
+                            out.println("<td>" + product.getStatus() + "</td></tr>");
                         }
                     %>
                 </tbody>

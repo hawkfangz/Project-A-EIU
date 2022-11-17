@@ -27,7 +27,7 @@ public class AdminLoginController extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-
+            System.out.println("Goes to Admin Login Controller");
             String account = request.getParameter("account");
             String password = request.getParameter("password");
             String msg = "empty";

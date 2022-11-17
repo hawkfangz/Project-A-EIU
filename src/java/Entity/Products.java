@@ -12,8 +12,10 @@ import java.sql.SQLException;
  * @author Hau
  */
 public class Products {
+
     private int id;
     private String name;
+    private int typeID;
     private String type;
     private String des;
     private int price;
@@ -21,8 +23,9 @@ public class Products {
 
     public Products(int id, String name, int typeID, String des, int price, int status) throws SQLException, ClassNotFoundException {
         this.id = id;
+        this.typeID = typeID;
         this.name = name;
-        this.type = ProductTypeDAO.getProductTypeDetail(typeID,"typeName");
+        this.type = ProductTypeDAO.getProductTypeDetail(typeID, "typeName");
         this.des = des;
         this.price = price;
         this.status = (status == 1) ? "available" : "unavailable";
@@ -32,6 +35,14 @@ public class Products {
         return id;
     }
 
+    public int getTypeID() {
+        return typeID;
+    }
+
+    public void setTypeID(int typeID) {
+        this.typeID = typeID;
+    }
+    
     public String getName() {
         return name;
     }
@@ -39,12 +50,12 @@ public class Products {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getTypeID() {
+    
+    public String getType() {
         return type;
     }
 
-    public void setTypeID(String type) {
+    public void setType(String type) {
         this.type = type;
     }
 

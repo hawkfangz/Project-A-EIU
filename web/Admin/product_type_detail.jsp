@@ -12,10 +12,6 @@
     String typeDES = type.getDes();
 %>
 
-
-
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 

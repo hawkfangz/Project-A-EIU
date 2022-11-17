@@ -14,6 +14,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manager</title>
     </head>
@@ -34,12 +35,17 @@
                 </div>
                 <button type="submit" name="addBtn" value="add" class="btn btn-primary mb-2">Add</button>
             </form>
-            <table class="table table-striped" border= "1"><%
-                %><tr><%                    out.print("<td><b>Type ID</b></td>");
-                    out.print("<td><b>Name</b></td>");
-                    out.print("<td><b>Des</b></td>");
-                    out.print("<td><b>Status</b></td>");
-                    %></tr>
+            <table class="table" border= "1">
+                <thead>
+                    <tr class="">
+                        <th scope="col">ID</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Function</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <%
                         String btn = "";
                         List<ProductType> typeList = ProductTypeDAO.getTypeTable();
@@ -49,23 +55,21 @@
                             } else {
                                 btn = "enable";
                             }
+                            out.print("<tr class=\"product-detail\">");
+                            out.print("<td>" + typeList.get(i).getId() + "</td>");
+                            out.print("<td>" + typeList.get(i).getName() + "</td>");
+                            out.print("<td>" + typeList.get(i).getDes() + "</td>");
+                            out.print("<td class=\"status\">" + typeList.get(i).getStatus() + "</td>");
+                            out.println("<td class=\"action-form\">"
+                                    + "<span><form  method=\"post\" action=\"AddProductType\">");
+                            out.println("   <input type=\"hidden\" name=\"id\" value=\"" + typeList.get(i).getId() + "\" />");
+                            out.println("   <button type=\"submit\" name=\"mode\" value=\"update\">Update</button>");
+                            out.println("   <button type=\"submit\" name=\"mode\" value=\"disable\">" + btn + "</button>");
+                            out.println("</form></span>");
+                            out.println("<tr>");
+                        }
                     %>
-                <tr>
-                    <%
-                        out.print("<td>" + typeList.get(i).getId() + "</td>");
-                        out.print("<td>" + typeList.get(i).getName() + "</td>");
-                        out.print("<td>" + typeList.get(i).getDes() + "</td>");
-                        out.print("<td class=\"status\">" + typeList.get(i).getStatus() + "</td>");
-                        out.println("<td >"
-                                + "<span class=\"action-form\"><form  method=\"post\" action=\"AddProductType\">");
-                        out.println("   <input type=\"hidden\" name=\"id\" value=\"" + typeList.get(i).getId() + "\" />");
-                        out.println("   <button class=\"function-btn\" type=\"submit\" name=\"mode\" value=\"update\">Update</button>");
-                        out.println("   <button class=\"function-btn\" type=\"submit\" name=\"mode\" value=\"disable\">" + btn + "</button>");
-                        out.println("</form></span>");
-                    %>
-                <tr>
-                    <%}
-                    %>
+                </tbody>
             </table>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
